@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    const char *base_dir = getenv("HYPRYOU_SOCKET_DIR");
+    const char *base_dir = getenv("HYPRPEAZ_SOCKET_DIR");
     if (!base_dir) {
         const char *user = getenv("USER");
         if (!user) {
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         }
 
         static char default_dir[256];
-        snprintf(default_dir, sizeof(default_dir), "/tmp/hypryou-%s/sockets", user);
+        snprintf(default_dir, sizeof(default_dir), "/tmp/hyprpeaz-%s/sockets", user);
 
         base_dir = default_dir;
     }

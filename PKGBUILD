@@ -1,14 +1,14 @@
-# Maintainer: Koeqaife
-pkgname=hypryou
-_pkgname="hyprland-material-you"
+# Maintainer: bariscanatakli
+pkgname=hyprpeaz
+_pkgname="hypr-peaz"
 pkgver=2.1.11
 pkgrel=1
 pkgdesc="Dynamic and elegant desktop setup inspired by Material You, featuring auto-generated colors, fluid animations, and customizable user experience."
 arch=('x86_64' 'aarch64')
-url="https://github.com/koeqaife/hyprland-material-you"
-install=hypryou.install
+url="https://github.com/bariscanatakli/hypr-peaz"
+install=hyprpeaz.install
 license=('GPL3')
-source=("$_pkgname::git+https://github.com/koeqaife/hyprland-material-you.git#tag=v$pkgver")
+source=("$_pkgname::git+https://github.com/bariscanatakli/hypr-peaz.git#tag=v$pkgver")
 sha256sums=('SKIP')
 
 depends=(
@@ -47,8 +47,8 @@ depends=(
 )
 
 optdepends=(
-  'hypryou-utils: A replacement of hyprland-qtutils with MaterialYou style'
-  'hypryou-greeter: Config for Greetd'
+  'hyprpeaz-utils: A replacement of hyprland-qtutils with MaterialYou style'
+  'hyprpeaz-greeter: Config for Greetd'
   'ttf-meslo-nerd-font-powerlevel10k: Font for alacritty'
   'alacritty: I recommend to use this terminal'
   'tela-circle-icon-theme-nord: Default icons'
@@ -73,9 +73,9 @@ build() {
     COMMON_FLAGS="-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wconversion -Wstrict-overflow=5 -O3 -flto"
   fi
 
-  gcc $COMMON_FLAGS client.c -o hypryouctl
-  gcc $COMMON_FLAGS $(pkg-config --cflags --libs gtk4) -o hypryou-start hypryou-start.c
-  gcc $COMMON_FLAGS $(pkg-config --cflags --libs gtk4) -o hypryou-crash-dialog crash-dialog.c
+  gcc $COMMON_FLAGS client.c -o hyprpeazctl
+  gcc $COMMON_FLAGS $(pkg-config --cflags --libs gtk4) -o hyprpeaz-start hyprpeaz-start.c
+  gcc $COMMON_FLAGS $(pkg-config --cflags --libs gtk4) -o hyprpeaz-crash-dialog crash-dialog.c
 }
 
 package() {
@@ -92,10 +92,10 @@ package() {
   cp -a "$srcdir/$_pkgname/assets/Google Sans Display/." "$pkgdir/usr/share/fonts/$pkgname/Google Sans Display/"
   cp -a "$srcdir/$_pkgname/assets/Google Sans Text/." "$pkgdir/usr/share/fonts/$pkgname/Google Sans Text/"
 
-  install -Dm755 "$srcdir/$_pkgname/build/hypryouctl" "$pkgdir/usr/bin/hypryouctl"
-  install -Dm755 "$srcdir/$_pkgname/build/hypryou-start" "$pkgdir/usr/bin/hypryou-start"
-  install -Dm755 "$srcdir/$_pkgname/build/hypryou-crash-dialog" "$pkgdir/usr/bin/hypryou-crash-dialog"
+  install -Dm755 "$srcdir/$_pkgname/build/hyprpeazctl" "$pkgdir/usr/bin/hyprpeazctl"
+  install -Dm755 "$srcdir/$_pkgname/build/hyprpeaz-start" "$pkgdir/usr/bin/hyprpeaz-start"
+  install -Dm755 "$srcdir/$_pkgname/build/hyprpeaz-crash-dialog" "$pkgdir/usr/bin/hyprpeaz-crash-dialog"
 
   install -Dm644 "$srcdir/$_pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-  install -Dm644 "$srcdir/$_pkgname/assets/hypryou.desktop" "$pkgdir/usr/share/wayland-sessions/hypryou.desktop"
+  install -Dm644 "$srcdir/$_pkgname/assets/hyprpeaz.desktop" "$pkgdir/usr/share/wayland-sessions/hyprpeaz.desktop"
 }

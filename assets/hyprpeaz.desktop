@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=HyprPeaz
+Comment=Run HyprPeaz DE on Hyprland WM
+Exec=hyprland --config /home/baris/.local/share/hyprpeaz/configs/hyprland/main.conf
+Type=Application
+DesktopNames=HyprPeaz
