@@ -58,7 +58,7 @@ on_restart_clicked(GtkButton *button, gpointer user_data)
         _exit(EXIT_SUCCESS);
     }
 
-    execlp("hypryou-start", "hypryou-start", NULL);
+    execlp("hyprpeaz-start", "hyprpeaz-start", NULL);
     perror("Failed to restart");
     _exit(EXIT_FAILURE);
 }
@@ -71,7 +71,7 @@ activate(GtkApplication *app, gpointer user_data)
     char *desc_text = g_strdup_printf(
         "The UI crashed with exit code %d."
         "\nExit code description: %s"
-        "\nCrash logs are usually saved to ~/.cache/hypryou/crashes."
+        "\nCrash logs are usually saved to ~/.cache/hyprpeaz/crashes."
         "\nFor opening terminal you can use Super+K.",
         exit_code,
         err_desc);
@@ -79,8 +79,8 @@ activate(GtkApplication *app, gpointer user_data)
     g_free(err_desc);
 
     GtkWidget *win = gtk_application_window_new(app);
-    gtk_widget_add_css_class(GTK_WIDGET(win), "hypryou-dialog");
-    gtk_window_set_title(GTK_WINDOW(win), "HyprYou crashed...");
+    gtk_widget_add_css_class(GTK_WIDGET(win), "hyprpeaz-dialog");
+    gtk_window_set_title(GTK_WINDOW(win), "HyprPeaz crashed...");
     gtk_window_set_default_size(GTK_WINDOW(win), 450, 150);
     gtk_window_set_resizable(GTK_WINDOW(win), FALSE);
 
@@ -88,7 +88,7 @@ activate(GtkApplication *app, gpointer user_data)
     gtk_window_set_child(GTK_WINDOW(win), box);
 
     GtkWidget *title = gtk_label_new(
-        "HyprYou crashed...");
+        "HyprPeaz crashed...");
     gtk_label_set_wrap(GTK_LABEL(title), TRUE);
     gtk_label_set_justify(GTK_LABEL(title), GTK_JUSTIFY_CENTER);
     gtk_label_set_xalign(GTK_LABEL(title), 0);
@@ -122,7 +122,7 @@ activate(GtkApplication *app, gpointer user_data)
     gtk_css_provider_load_from_string(provider,
                                       ".title { font-size: 20px; font-weight: 400; }"
                                       ".description { font-size: 16px; font-weight: 300; }"
-                                      ".hypryou-dialog { padding: 20px; }");
+                                      ".hyprpeaz-dialog { padding: 20px; }");
 
     gtk_style_context_add_provider_for_display(
         gdk_display_get_default(),
@@ -154,7 +154,7 @@ int main(int argc, char **argv)
     }
     g_option_context_free(context);
 
-    GtkApplication *app = gtk_application_new("com.koeqaife.hypryou.crashed", G_APPLICATION_DEFAULT_FLAGS);
+    GtkApplication *app = gtk_application_new("com.bariscanatakli.hyprpeaz.crashed", G_APPLICATION_DEFAULT_FLAGS);
 
     g_signal_connect(app, "activate", G_CALLBACK(activate), GINT_TO_POINTER(exit_code));
 
